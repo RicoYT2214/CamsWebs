@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CamsWebs – Get Your Website Built</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#8b5cf6; --blue-d:#6d28d9; --blue-soft:rgba(139,92,246,.15);
+  --g50:#f9fafb;  --g200:#e5e7eb; --g700:#374151; --g800:#1f2937; --g900:#111827;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",Arial,Helvetica,sans-serif;scroll-behavior:smooth;}
+body{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff;line-height:1.6;}
+
+header{
+  position:sticky;top:0;z-index:100;background:rgba(249,250,251,.6);
+  backdrop-filter:blur(10px);padding:.8rem 1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);transition:padding .3s;
+}
+header.shrink{padding:.4rem 1rem;}
+header nav a{margin-left:1rem;font-size:.9rem;text-decoration:none;color:#111827;font-weight:600;}
+header nav a:hover{color:var(--blue-d);}
+.container{max-width:1100px;margin:auto;padding:0 1rem;}
+section{padding:4.5rem 1rem;position:relative;}
+.section-title{font-size:1.9rem;font-weight:600;text-align:center;margin-bottom:2.2rem;}
+section.reveal{opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.22,1,.36,1);}
+section.reveal.visible{opacity:1;transform:none;}
+
+.hero{
+  background:linear-gradient(135deg,#2563eb 0%,#1e40af 100%);
+  position:relative;overflow:hidden;text-align:center;padding:5.5rem 1rem;
+}
+.hero::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(60deg,rgba(255,255,255,.05) 0 2px,transparent 2px 40px);}
+.hero h2{font-size:2.8rem;font-weight:600;margin-bottom:1rem;}
+.btn{display:inline-block;background:#fff;color:#111827;padding:.9rem 2.1rem;border-radius:8px;
+     font-weight:600;text-decoration:none;transition:transform .25s,box-shadow .25s;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.15);}
+
+#logo{display:inline-block;font-size:0;position:relative;}
+#logo .letter{
+  display:inline-block;margin:0;font-size:1.75rem;font-weight:600;color:#111827;
+  animation:explode 2.4s ease-in-out forwards;animation-delay:calc(var(--i) * .1s);}
+@keyframes explode{
+  0%{transform:translate(0) rotate(0) scale(1);opacity:1;}
+  40%,60%{transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.5);opacity:0;}
+  100%{transform:none;opacity:1;}
+}
+
+#how{overflow:hidden;}
+.star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;
+      opacity:.9;pointer-events:none;animation:shoot 2.8s linear forwards;}
+@keyframes shoot{from{transform:translate(0) rotate(45deg);}to{transform:translate(-680px,560px) rotate(45deg);opacity:0;}}
+.how-content{position:relative;z-index:1;}
+ol.steps{list-style:decimal;margin-left:1.4rem;font-size:1.05rem;line-height:1.6;}
+
+.flex-row{display:flex;flex-wrap:wrap;gap:2rem;}
+.flex-1{flex:1 1 300px;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+.card{
+  background:var(--g800);border-radius:12px;padding:1.5rem 1.4rem;position:relative;
+  overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.2);transition:transform .3s,box-shadow .3s;}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:var(--blue-soft);opacity:0;transition:opacity .3s;}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 22px rgba(0,0,0,.25);}
+.card:hover::before{opacity:1;}
+.card h4{text-align:center;font-size:1.4rem;margin-bottom:.5rem;}
+.card ul{margin-left:1rem;font-size:.9rem;line-height:1.45;}
+.card p.price{text-align:center;font-size:1.7rem;font-weight:700;margin-top:1rem;}
+
+.order-card{background:var(--g800);border-radius:12px;padding:2rem;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+.order-card input,.order-card textarea,.order-card select{
+  width:100%;padding:.75rem;border:none;border-radius:8px;background:var(--g700);
+  color:#fff;margin-bottom:1.25rem;font-size:.9rem;}
+.order-card input:focus,.order-card textarea:focus,.order-card select:focus{
+  outline:2px solid var(--blue);}
+.order-card label{font-size:.85rem;font-weight:600;color:var(--g200);display:block;margin-bottom:.35rem;}
+
+footer{text-align:center;padding:1.4rem;font-size:.8rem;color:var(--g200);}
+@media(max-width:640px){.hero h2{font-size:2.1rem;}}
+
+/* ---------- Mobile tweaks ---------- */
+@media(max-width:720px){
+  header nav a{margin-left:.6rem;font-size:.8rem;}
+  .hero{padding:4rem 1rem;}
+  .hero h2{font-size:1.9rem;}
+  .section-title{font-size:1.5rem;}
+  .flex-row{flex-direction:column;align-items:center;}
+  .flex-1{flex:1 1 100%;}
+  .cards{grid-template-columns:1fr;}
+  ol.steps{margin-left:1rem;font-size:1rem;}
+  .order-card{padding:1.5rem;}
+  #mainNav{flex-wrap:wrap;}
+}
+
+</style>
+</head>
+<body>
+
+<header id="mainNav">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <h1 id="logo">
+      <span class="letter">C</span><span class="letter">a</span><span class="letter">m</span>
+      <span class="letter">s</span><span class="letter">W</span><span class="letter">e</span>
+      <span class="letter">b</span><span class="letter">s</span>
+    </h1>
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#order">Order</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h2>Websites Built&nbsp;&amp;&nbsp;Launched&nbsp;for&nbsp;You</h2>
+    <p style="margin-bottom:2.2rem;">From concept to live site — we handle everything.</p>
+  </div>
+</section>
+
+<section id="how" class="reveal">
+  <h3 class="section-title">How It Works</h3>
+  <div class="container flex-row how-content">
+    <ol class="steps flex-1">
+      <li>Pick your package &amp; fill our quick order form.</li>
+      <li>We design &amp; build your custom site.</li>
+      <li>Preview and request tweaks.</li>
+      <li>We launch it and send the live link.</li>
+    </ol>
+    <div class="flex-1" style="text-align:center;">
+      <video id="promoVideo" poster="camswebs_clean_thumbnail.png"
+             style="width:100%;border-radius:12px;" controls preload="none">
+        <source src="Effortless_Website_Creation_with_CamsWebs.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="reveal">
+  <h3 class="section-title">Packages</h3>
+  <div class="container cards">
+    <div class="card">
+      <h4>Starter</h4>
+      <ul>
+        <li>Single-page scrolling site (Home / About / Contact).</li>
+        <li>Custom colours &amp; your logo.</li>
+        <li>Mobile-optimised.</li>
+      </ul>
+      <p class="price">£89</p>
+    </div>
+    <div class="card">
+      <h4>Pro</h4>
+      <ul>
+        <li>Everything in Starter.</li>
+        <li>Up to five separate pages.</li>
+        <li>Interactive contact form.</li>
+        <li>Basic SEO &amp; one revision.</li>
+      </ul>
+      <p class="price">£109</p>
+    </div>
+    <div class="card">
+      <h4>Business+</h4>
+      <ul>
+        <li>Everything in Pro.</li>
+        <li>Unlimited pages + editable blog.</li>
+        <li>Shop or booking system.</li>
+        <li>Full SEO &amp; 1-month support.</li>
+      </ul>
+      <p class="price">£250</p>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="reveal">
+  <h3 class="section-title">Start Your Project</h3>
+  <div class="container" style="max-width:620px;">
+    <div class="order-card">
+      <form id="orderForm">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" placeholder="Enter your name" required>
+        <label for="email">Email Address</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+        <label for="business">Business / Brand Name</label>
+        <input id="business" type="text" placeholder="Your business name" required>
+        <label for="details">Project Details</label>
+        <textarea id="details" rows="4" placeholder="Tell us about your website…"></textarea>
+        <label for="package">Choose a Package</label>
+        <select id="package" required>
+          <option value="" disabled selected>Select Package</option>
+          <option>Starter – £89</option>
+          <option>Pro – £109</option>
+          <option>Business+ – £250</option>
+        </select>
+        <button class="btn" style="width:100%;margin-top:.5rem;">Send Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal" style="background:var(--g800);">
+  <h3 class="section-title">Contact &amp; Info</h3>
+  <div class="container" style="max-width:700px;text-align:center;">
+    <p>Need help? Email us at <a href="mailto:CamsWebs122@gmail.com">CamsWebs122@gmail.com</a></p>
+    <p style="margin-top:1rem;font-size:.9rem;line-height:1.5;">
+      <strong>Timeline:</strong> 2–5 days depending on package<br>
+      <strong>Hosting &amp; domain:</strong> We can handle everything<br>
+      <strong>Edits:</strong> Basic edits are free after delivery
+    </p>
+  </div>
+</section>
+
+<footer>&copy; 2025 CamsWebs. All rights reserved.</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY"); // replace
+document.getElementById('orderForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target,data={name:f.name.value,email:f.email.value,business:f.business.value,
+                         details:f.details.value,package:f.package.value};
+  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",data).then(()=>{
+      let u="";
+      if(data.package.includes("Starter"))u="https://www.paypal.com/pay?amount=89";
+      else if(data.package.includes("Pro"))u="https://www.paypal.com/pay?amount=109";
+      else if(data.package.includes("Business"))u="https://www.paypal.com/pay?amount=250";
+      window.location.href=u;
+  },()=>alert("Failed to send. Please try again."));
+});
+
+const letters=[...document.querySelectorAll('#logo .letter')];
+function burst(){
+  letters.forEach((l,i)=>{
+    l.style.setProperty('--dx',(Math.random()*160-80)+'px');
+    l.style.setProperty('--dy',(Math.random()*120-60)+'px');
+    l.style.setProperty('--rot',(Math.random()*720-360)+'deg');
+    l.style.setProperty('--i',i);
+    l.style.animation='none';void l.offsetWidth;l.style.animation='';
+  });
+}
+burst();setInterval(burst,6000);
+
+const howSec=document.getElementById('how');
+setInterval(()=>{
+  const s=document.createElement('div');s.className='star';
+  const size=Math.random()*2+1;
+  s.style.width=s.style.height=size+'px';
+  s.style.left=Math.random()*howSec.clientWidth*0.4+'px';
+  s.style.top=Math.random()*howSec.clientHeight+'px';
+  howSec.appendChild(s);
+  s.addEventListener('animationend',()=>s.remove());
+},320);
+
+const observer=new IntersectionObserver(ents=>ents.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add('visible');
+}),{threshold:.3});
+document.querySelectorAll('section.reveal').forEach(s=>observer.observe(s));
+
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('shrink',window.scrollY>60));
+
+const vid=document.getElementById('promoVideo');
+vid&&vid.addEventListener('ended',()=>{vid.pause();vid.currentTime=0;vid.load();});
+</script>
+</body>
+</html>
